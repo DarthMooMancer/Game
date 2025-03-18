@@ -3,8 +3,8 @@ from include import ChildWindows as cw
 
 windowManager = win.windowManager()
 
-main = cw.Main("Main", False, 0, windowManager)
-settings = cw.Settings("Settings", False, 1, windowManager)
+main = cw.Main("Main", 0, windowManager)
+settings = cw.Settings("Settings", 1, windowManager)
 
 windowManager.addWindow(main)
 windowManager.addWindow(settings)

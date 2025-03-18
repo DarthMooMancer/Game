@@ -15,8 +15,8 @@ class EntityManager:
         self.groups = {}
         self.window = window
 
-    def addGroup(self, name, group):
-        self.groups[name] = group
+    def addGroup(self, name):
+        self.groups[name] = pygame.sprite.Group()
 
     def removeGroup(self, name):
         self.groups.pop(name)
@@ -25,7 +25,12 @@ class EntityManager:
         if nameOfGroup in self.groups:
             self.groups[nameOfGroup].add(nameOfObject)
 
-    def update(self):
-        for group in self.groups.values():
-            group.draw(self.window)
-            group.update()
+    def update(self, name=None):
+        if name is not None:
+            if name in self.groups:
+                self.groups[name].draw(self.window)
+                self.groups[name].update()
+        else:
+            for group in self.groups.values():
+                group.draw(self.window)
+                group.update()

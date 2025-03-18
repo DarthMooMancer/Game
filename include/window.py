@@ -1,9 +1,9 @@
 class Window:
-    def __init__(self, name, enabled, id, manager):
+    def __init__(self, name, id, manager):
         self.name = name
-        self.enabled = enabled
+        self.enabled = False 
         self.id = id
-        self.window = [name, enabled, id]
+        self.window = [name, self.enabled, id]
         self.manager = manager
 
     def getName(self):
@@ -29,7 +29,7 @@ class Window:
 
 class windowManager(Window):
     def __init__(self):
-        super().__init__(name=None, enabled=None, id=None, manager=None)
+        super().__init__(name=None, id=None, manager=None)
         self.windows = []
         self.currentWindow: Window | None = None
 

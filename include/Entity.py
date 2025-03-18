@@ -1,6 +1,7 @@
 class Entity:
     def __init__(self):
         pass
+        # Test using git from neovim
 
 class EntityManager(Entity):
     def __init__(self, window):

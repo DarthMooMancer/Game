@@ -1,11 +1,11 @@
-from include import window as win
-from include import childWindows as cw
+from include import Window as win
+from include import ChildWindows as cw
 
-manager = win.windowManager()
+windowManager = win.windowManager()
 
-main = cw.Main("Main", False, 0, manager)
-settings = cw.Settings("Settings", False, 1, manager)
+main = cw.Main("Main", False, 0, windowManager)
+settings = cw.Settings("Settings", False, 1, windowManager)
 
-manager.addWindow(main)
-manager.addWindow(settings)
-manager.baseUpdate()
+windowManager.addWindow(main)
+windowManager.addWindow(settings)
+windowManager.baseUpdate()

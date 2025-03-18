@@ -1,6 +1,13 @@
-from include import window as win
-from include import display as dp
+from include import Window as win
+from include import Display as dp
+from include import Entity as ent
 import pygame
+from include.Settings import *
+
+entityManager = ent.EntityManager(dp.win)
+player = ent.Entity(16, BLUE, (100, 100))
+entityManager.addGroup("Entity", pygame.sprite.Group)
+entityManager.addToGroup(player, "Entity")
 
 class Main(win.Window):
     def __init__(self, name, status, id, manager):
@@ -9,6 +16,7 @@ class Main(win.Window):
 
     def updateCallback(self):
         dp.win.fill((255, 0, 0))
+        entityManager.update()
 
     def eventHandler(self, event):
         if event.type == pygame.KEYDOWN:

@@ -1,5 +1,5 @@
 import pygame
-from include.settings import WIDTH, HEIGHT
+from include.Settings import WIDTH, HEIGHT
 import sys
 
 def init():

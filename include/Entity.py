@@ -1,26 +1,31 @@
-class Entity:
-    def __init__(self):
-        pass
-        # Test using git from neovim
-
-class EntityManager(Entity):
-    def __init__(self, window):
-        super().__init__()
-        self.groups = []
-        self.window = window
-
-    def addGroup(self, name):
-        self.groups.append(name)
-
-    def removeGroup(self, name):
-        self.groups.remove(name)
-
-    def addToGroup(self, nameOfObject, nameOfGroup):
-        for i in self.groups:
-            if i == nameOfGroup:
-                nameOfGroup.add(nameOfObject)
+import pygame
+class Entity(pygame.sprite.Sprite):
+    def __init__(self, size, color, pos: tuple):
+        pygame.sprite.Sprite.__init__(self)
+        self.image = pygame.Surface((size, size))
+        self.image.fill(color)
+        self.pos = pos
+        self.rect = self.image.get_rect(center=(self.pos))
 
     def update(self):
-        for i in self.groups:
-            i.draw(self.window)
-            i.update()
+        pass
+
+class EntityManager:
+    def __init__(self, window):
+        self.groups = {}
+        self.window = window
+
+    def addGroup(self, name, group):
+        self.groups[name] = group
+
+    def removeGroup(self, name):
+        self.groups.pop(name)
+
+    def addToGroup(self, nameOfObject, nameOfGroup):
+        if nameOfGroup in self.groups:
+            self.groups[nameOfGroup].add(nameOfObject)
+
+    def update(self):
+        for group in self.groups.values():
+            group.draw(self.window)
+            group.update()

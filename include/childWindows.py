@@ -13,7 +13,7 @@ entityManager.addToGroup(player, "Entity")
 class Main(win.Window):
     def __init__(self, name, id, manager):
         win.Window.__init__(self, name, id, manager)
-        self.render = dp.newRender(self, 30, self.updateCallback, eventHandler=self.eventHandler)
+        self.render = dp.newGraphicRender(self, 30, self.updateCallback, eventHandler=self.eventHandler)
 
     def updateCallback(self):
         dp.win.fill((0, 0, 0))
@@ -22,7 +22,10 @@ class Main(win.Window):
     def eventHandler(self, event):
         if event.type == pygame.KEYDOWN:
             if event.key == pygame.K_k:
+                player.clearVelocity()
                 self.manager.switchWindow(self.id, 1)
+
+        player.eventHandler(event)
 
     def update(self):
         self.render.update()
@@ -30,7 +33,7 @@ class Main(win.Window):
 class Settings(win.Window):
     def __init__(self, name, id, manager):
         win.Window.__init__(self, name, id, manager)
-        self.render = dp.newRender(self, 30, self.updateCallback, eventHandler=self.eventHandler)
+        self.render = dp.newGraphicRender(self, 30, self.updateCallback, eventHandler=self.eventHandler)
 
     def eventHandler(self, event):
         if event.type == pygame.KEYDOWN:

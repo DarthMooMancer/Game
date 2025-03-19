@@ -15,7 +15,7 @@ def init():
 
 win, clock = init()
 
-class newRender:
+class newGraphicRender:
     def __init__(self, window, fps, updateCallback, initCallback=None, eventHandler=None):
         self.fps = fps
         self.updateCallback = updateCallback

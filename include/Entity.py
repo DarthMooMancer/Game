@@ -1,4 +1,5 @@
 import pygame
+from include.Settings import * 
 class Entity(pygame.sprite.Sprite):
     def __init__(self, size, color, pos: tuple):
         pygame.sprite.Sprite.__init__(self)
@@ -9,6 +10,13 @@ class Entity(pygame.sprite.Sprite):
 
     def update(self):
         pass
+
+class Obstacle(pygame.sprite.Sprite):
+    def __init__(self, x, y, color):
+        pygame.sprite.Sprite.__init__(self)
+        self.image = pygame.Surface((TILESIZE, TILESIZE))
+        self.image.fill(color)
+        self.rect = pygame.Rect((x * TILESIZE, y * TILESIZE), (TILESIZE, TILESIZE))
 
 class EntityManager:
     def __init__(self, window):

@@ -66,3 +66,7 @@ class Player(ent.Entity):
         
     def update(self):
         self.movement()
+
+class Wall(ent.Obstacle):
+    def __init__(self, x, y, color):
+        ent.Obstacle.__init__(self, x, y, color)

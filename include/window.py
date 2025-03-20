@@ -1,10 +1,9 @@
 class Window:
-    def __init__(self, name, id, manager):
-        self.name = name
-        self.enabled = False 
-        self.id = id
-        self.window = [name, self.enabled, id]
-        self.manager = manager
+    def __init__(self, name, id):
+        self.name: str = name
+        self.enabled: bool = False 
+        self.id: int = id
+        self.window: list = [name, self.enabled, id]
 
     def getName(self):
         return self.name
@@ -29,7 +28,7 @@ class Window:
 
 class windowManager(Window):
     def __init__(self):
-        super().__init__(name=None, id=None, manager=None)
+        super().__init__(name=None, id=None)
         self.windows = []
         self.currentWindow: Window | None = None
 

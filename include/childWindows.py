@@ -2,17 +2,19 @@ from include import Window as win
 from include import Display as dp
 from include import Entity as ent
 from include import ChildEntities as chent
+from include import Map as map
 import pygame
 from include.Settings import *
 
 entityManager = ent.EntityManager(dp.win)
 player = chent.Player()
 entityManager.addGroup("Entity")
+entityManager.addGroup("Obstacles")
 entityManager.addToGroup(player, "Entity")
 
 class Main(win.Window):
-    def __init__(self, name, id, manager):
-        win.Window.__init__(self, name, id, manager)
+    def __init__(self, name, id):
+        win.Window.__init__(self, name, id)
         self.render = dp.newGraphicRender(self, 30, self.updateCallback, eventHandler=self.eventHandler)
 
     def updateCallback(self):
@@ -31,8 +33,8 @@ class Main(win.Window):
         self.render.update()
 
 class Settings(win.Window):
-    def __init__(self, name, id, manager):
-        win.Window.__init__(self, name, id, manager)
+    def __init__(self, name, id):
+        win.Window.__init__(self, name, id)
         self.render = dp.newGraphicRender(self, 30, self.updateCallback, eventHandler=self.eventHandler)
 
     def eventHandler(self, event):

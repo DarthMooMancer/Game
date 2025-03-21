@@ -1,4 +1,4 @@
-from include.system import Window as win
+from include.system import WindowCore as win
 from include.system import Display as dp
 from include.system import EntityCore as ent
 from include import childEntities as chent
@@ -16,6 +16,7 @@ class Main(win.Window):
 
     def updateCallback(self):
         dp.win.fill((0, 0, 0))
+        print("This is main")
         ent.entityManager.update("Entity")
         ent.entityManager.update("Obstacle")
         
@@ -44,6 +45,7 @@ class Settings(win.Window):
 
     def updateCallback(self):
         dp.win.fill((0, 0, 100))
+        print("This is settings")
 
     def update(self):
         self.render.update()

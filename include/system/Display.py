@@ -27,7 +27,7 @@ class newGraphicRender:
         if self.initCallback:
             self.initCallback()
 
-        while self.window.enabled:
+        while self.window.status:
             clock.tick(self.fps)
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:

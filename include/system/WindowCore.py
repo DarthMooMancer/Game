@@ -1,18 +1,21 @@
 class Window:
     def __init__(self, id: int, manager):
-        self.enabled: bool = False 
+        self.status: bool = False 
         self.id: int = id
-        self.window: list[bool | int] = [self.enabled, id]
+        self.window: list[bool | int] = [self.status, id]
         self.manager = manager
 
-    def getEnabled(self) -> bool:
-        return self.enabled
+    def getStatus(self) -> bool:
+        return self.status
 
-    def setEnabled(self) -> None:
-        self.enabled = True
+    def toggleState(self) -> None:
+        if self.status:
+            self.status = False
+        else:
+            self.status = True
 
     def setDisabled(self) -> None:
-        self.enabled = False
+        self.status = False
 
     def getId(self) -> int:
         return self.id
@@ -33,7 +36,7 @@ class windowManager(Window):
         for i in self.windows:
             if i.getId() == 0:
                 self.currentWindow = i
-                i.setEnabled()
+                i.toggleState()
 
     def addWindow(self, window: Window):
         if not any(w.getId() == window.getId() for w in self.windows):
@@ -45,7 +48,7 @@ class windowManager(Window):
     def baseUpdate(self):
         self.__getDefaultWindow()
         while True:
-            if self.currentWindow is not None and self.currentWindow.getEnabled() == True:
+            if self.currentWindow is not None and self.currentWindow.getStatus() == True:
                 self.currentWindow.update()
             else:
                 print("currentWindow was either set to None or currentwindow is disabled")
@@ -55,12 +58,14 @@ class windowManager(Window):
         nextWindow = None
         for i in self.windows:
             if(i.getId() == previousWindowId):
-                i.setDisabled()
+                i.toggleState()
             if(i.getId() == nextWindowId):
                 nextWindow = i
-                nextWindow.setEnabled()
-        if nextWindow is not None and nextWindow.getEnabled():
+                nextWindow.toggleState()
+        if nextWindow is not None and nextWindow.getStatus():
             self.currentWindow = nextWindow
 
         else:
-            print("The next window is not properly enabled")
+            print("The next window is not properly status")
+
+winManager = windowManager()

@@ -1,4 +1,4 @@
-from include.system.Map import Map, mapManager
+from include.system.MapCore import Map, mapManager
 
 class Test(Map):
     def __init__(self):

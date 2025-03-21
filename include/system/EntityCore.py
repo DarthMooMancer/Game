@@ -6,25 +6,20 @@ class EntityManager:
     def __init__(self):
         self.groups: dict[str, pygame.sprite.Group] = {}
 
-    def addGroup(self, name) -> None:
+    def addGroup(self, name: str) -> None:
         self.groups[name] = pygame.sprite.Group()
 
-    def removeGroup(self, name) -> None:
+    def removeGroup(self, name: str) -> None:
         self.groups.pop(name)
 
     def addToGroup(self, nameOfObject, nameOfGroup) -> None:
         if nameOfGroup in self.groups:
             self.groups[nameOfGroup].add(nameOfObject)
 
-    def update(self, name=None) -> None:
-        if name is not None:
-            if name in self.groups:
-                self.groups[name].draw(dp.win)
-                self.groups[name].update()
-        else:
-            for group in self.groups.values():
-                group.draw(dp.win)
-                group.update()
+    def update(self, name: str) -> None:
+        if name in self.groups:
+            self.groups[name].draw(dp.win)
+            self.groups[name].update()
 
 entityManager = EntityManager()
 entityManager.addGroup("Entity")

@@ -10,25 +10,31 @@ class Main(win.Window):
     def __init__(self, id, manager):
         win.Window.__init__(self, id, manager)
         self.render = dp.newGraphicRender(self, 30, self.updateCallback, self.initCallback, self.eventHandler)
+        self.player = chent.Player()
 
     def initCallback(self):
         chmap.mapManager.setMap(chmap.test1)
+        ent.entityManager.addToGroup(self.player, "Entity")
 
     def updateCallback(self):
         dp.win.fill((0, 0, 0))
-        print("This is main")
         ent.entityManager.update("Entity")
-        ent.entityManager.update("Obstacle")
-        
+        ent.entityManager.update("Obstacles")
+
+        # for x in range(0, WIDTH, TILESIZE):
+        #     for y in range(0, HEIGHT, TILESIZE):
+        #         rect = pygame.Rect(x, y, TILESIZE, TILESIZE)
+        #         pygame.draw.rect(dp.win, BLUE, rect, 1)
+
         chmap.mapManager.tileRenderer()  # This will render the tiles based on the active map
 
     def eventHandler(self, event):
         if event.type == pygame.KEYDOWN:
             if event.key == pygame.K_k:
-                chent.player.clearVelocity()
+                self.player.clearVelocity()
                 self.manager.switchWindow(self.id, 1)
 
-        chent.player.eventHandler(event)
+        self.player.eventHandler(event)
 
     def update(self):
         self.render.update()
@@ -45,7 +51,6 @@ class Settings(win.Window):
 
     def updateCallback(self):
         dp.win.fill((0, 0, 100))
-        print("This is settings")
 
     def update(self):
         self.render.update()

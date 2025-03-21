@@ -1,11 +1,13 @@
 from include.system.MapCore import Map, mapManager
 
-class Test(Map):
-    def __init__(self):
-        Map.__init__(self, matrix=[[1, 0], [0, 1]], id=1)
+MAP1 = [ 
+    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0], 
+    [0, 1, 1, 1, 1, 1, 1, 1, 1, 0],
+    [0, 1, 0, 0, 0, 0, 0, 0, 1, 0],
+    [0, 1, 0, 1, 1, 1, 1, 0, 1, 0],
+    [0, 1, 0, 1, 0, 0, 0, 0, 1, 0],
+    [0, 1, 0, 1, 0, 1, 1, 1, 1, 0],
+]
 
-    def update(self):
-        print("Test map updated")
-
-test1 = Test()
+test1 = Map(MAP1, 0)
 mapManager.addMap(test1)

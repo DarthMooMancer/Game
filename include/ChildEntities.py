@@ -72,5 +72,3 @@ class Player(ent.Entity):
 class Wall(ent.Obstacle):
     def __init__(self, x, y, color):
         ent.Obstacle.__init__(self, x, y, color)
-
-player = Player()

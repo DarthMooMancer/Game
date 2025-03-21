@@ -36,7 +36,7 @@ class MapManager:
         for row_index, row in enumerate(self.activeMap):
             for col_index, cell in enumerate(row):
                 if cell == 1:
-                    ent.entityManager.addToGroup(chEnt.Wall(row_index, col_index, BLUE), "Entity")
+                    ent.entityManager.addToGroup(chEnt.Wall(row_index, col_index, BLUE), "Obstacles")
 
     def setMap(self, map: Map):
         for i in self.maps:

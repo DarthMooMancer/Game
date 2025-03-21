@@ -1,30 +1,25 @@
-from include.Settings import *
-from include import ChildEntities as chent
+from include.system.Settings import *
+from include import childEntities as chEnt
+from include.system import EntityCore as ent
+from include.system import Display as dp
 
 class Map:
-    def __init__(self, matrix, id):
-        self.matrix: list = matrix
+    def __init__(self, matrix: list[list[int]], id: int):
+        self.matrix: list[list[int]] = matrix
         self.id: int = id
 
-    def getMatrix(self) -> list:
+    def getMatrix(self) -> list[list[int]]:
         return self.matrix
 
     def getId(self) -> int:
         return self.id
 
-    """ TODO
-    Find a way to make it the map doesnt have tileRenderer and make it 
-    everything can render based on number properly in MapManager. Below wont work
-    because it is based on each map and can only use one group.
-
-    """  
-
     def update(self):
         pass
 
-class MapManager(Map):
-    def __init__(self, group):
-        Map.__init__(self, matrix=None, id=None)
+class MapManager:
+    def __init__(self):
+        # Map.__init__(self, matrix=None, id=None)
         self.maps = []
         self.activeMap = []
 
@@ -41,9 +36,7 @@ class MapManager(Map):
         for row_index, row in enumerate(self.activeMap):
             for col_index, cell in enumerate(row):
                 if cell == 1:
-                    chent.Wall(row_index, col_index, BLUE)
-
-                    pass
+                    ent.entityManager.addToGroup(chEnt.Wall(row_index, col_index, BLUE), "Entity")
 
     def setMap(self, map: Map):
         for i in self.maps:
@@ -63,3 +56,5 @@ class MapManager(Map):
 
         else:
             print("The next window is not properly enabled")
+
+mapManager = MapManager()

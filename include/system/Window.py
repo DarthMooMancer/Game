@@ -1,35 +1,32 @@
 class Window:
-    def __init__(self, name, id):
-        self.name: str = name
+    def __init__(self, id: int, manager):
         self.enabled: bool = False 
         self.id: int = id
-        self.window: list = [name, self.enabled, id]
+        self.window: list[bool | int] = [self.enabled, id]
+        self.manager = manager
 
-    def getName(self):
-        return self.name
-
-    def getEnabled(self):
+    def getEnabled(self) -> bool:
         return self.enabled
 
-    def setEnabled(self):
+    def setEnabled(self) -> None:
         self.enabled = True
 
-    def setDisabled(self):
+    def setDisabled(self) -> None:
         self.enabled = False
 
-    def getId(self):
+    def getId(self) -> int:
         return self.id
 
-    def getWindow(self):
+    def getWindow(self) -> list[bool | int]:
         return self.window
     
-    def update(self):
+    def update(self) -> None:
         pass
 
 class windowManager(Window):
     def __init__(self):
-        super().__init__(name=None, id=None)
-        self.windows = []
+        super().__init__(id=-1, manager=None)
+        self.windows: list[Window] = []
         self.currentWindow: Window | None = None
 
     def __getDefaultWindow(self):

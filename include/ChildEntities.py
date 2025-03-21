@@ -1,9 +1,11 @@
 import pygame
-from include import Entity as ent
-from include import Display as dp
-from include.Settings import *
+from include.system import EntityCore as ent
+from include.system import Display as dp
+from include.system.Settings import *
 
 class Player(ent.Entity):
+    mechanics: dict[str, bool]
+    attributes: dict[str, int]
     def __init__(self):
         ent.Entity.__init__(self, 16, BLUE, (100, 100))
         self.mechanics = {
@@ -70,3 +72,5 @@ class Player(ent.Entity):
 class Wall(ent.Obstacle):
     def __init__(self, x, y, color):
         ent.Obstacle.__init__(self, x, y, color)
+
+player = Player()

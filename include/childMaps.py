@@ -1,13 +1,5 @@
-from include.system.MapCore import Map, mapManager
+from include.System.MapCore import Map, mapManager
+from include.maps import map0
 
-MAP1 = [ 
-    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0], 
-    [0, 1, 1, 1, 1, 1, 1, 1, 1, 0],
-    [0, 1, 0, 0, 0, 0, 0, 0, 1, 0],
-    [0, 1, 0, 1, 1, 1, 1, 0, 1, 0],
-    [0, 1, 0, 1, 0, 0, 0, 0, 1, 0],
-    [0, 1, 0, 1, 0, 1, 1, 1, 1, 0],
-]
-
-test1 = Map(MAP1, 0)
-mapManager.addMap(test1)
+test3 = Map(map0.map0, 2)
+mapManager.addMap(test3)  # Add the second map to the map manager

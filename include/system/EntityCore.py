@@ -1,6 +1,7 @@
 import pygame
-from include.system.Settings import * 
-from include.system import Display as dp
+from include.System import CameraCore as cam
+from include.System import Display as dp
+from include.System.Settings import *
 
 class EntityManager:
     def __init__(self):
@@ -9,6 +10,9 @@ class EntityManager:
     def addGroup(self, name: str) -> None:
         self.groups[name] = pygame.sprite.Group()
 
+    def addCustomGroup(self, name: str, group: pygame.sprite.Group) -> None:
+        self.groups[name] = group
+
     def removeGroup(self, name: str) -> None:
         self.groups.pop(name)
 
@@ -16,22 +20,36 @@ class EntityManager:
         if nameOfGroup in self.groups:
             self.groups[nameOfGroup].add(nameOfObject)
 
-    def update(self, name: str) -> None:
-        if name in self.groups:
-            self.groups[name].draw(dp.win)
-            self.groups[name].update()
+    def update(self, name: str | None = None) -> None:
+        if name is not None:
+            if name in self.groups:
+                self.groups[name].draw(dp.win)
+                self.groups[name].update()
+        else:
+            for group in self.groups.values():
+                group.draw(dp.win)
+                group.update()
+
 
 entityManager = EntityManager()
 entityManager.addGroup("Entity")
 entityManager.addGroup("Obstacles")
+cameraGroup = cam.CameraGroup()
+entityManager.addCustomGroup("Camera", cameraGroup)
 
 class Entity(pygame.sprite.Sprite):
-    def __init__(self, size, color, pos: tuple):
+    attributes: dict[str, int]
+    def __init__(self, size, color, pos: tuple | int):
         pygame.sprite.Sprite.__init__(self)
         self.image = pygame.Surface((size, size))
         self.image.fill(color)
         self.pos = pos
         self.rect = self.image.get_rect(center=(self.pos))
+        self.attributes = {
+            "speed": 6,
+            "dx": 0,
+            "dy": 0,
+        }
 
     def update(self):
         pass

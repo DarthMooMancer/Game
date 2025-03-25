@@ -1,8 +1,10 @@
+from include.System.Display import newGraphicRender
 class Window:
     def __init__(self, id: int, manager):
         self.status: bool = False 
         self.id: int = id
         self.manager = manager
+        self.render = newGraphicRender(self, self.updateCallback, self.initCallback, self.eventHandler)
 
     def getStatus(self) -> bool:
         return self.status
@@ -16,8 +18,17 @@ class Window:
         else:
             self.status = True
 
-    def update(self) -> None:
+    def updateCallback(self) -> None:
         pass
+
+    def initCallback(self) -> None:
+        pass
+
+    def eventHandler(self, event) -> None:
+        pass
+
+    def update(self) -> None:
+        self.render.update()
 
 class windowManager(Window):
     def __init__(self):
@@ -32,9 +43,6 @@ class windowManager(Window):
 
     def addWindow(self, id: int, window: Window):
         self.windows[id] = window
-
-    def removeWindow(self, id: int):
-        self.windows.pop(id)
 
     def baseUpdate(self):
         self.getDefaultWindow()
@@ -55,8 +63,8 @@ class windowManager(Window):
                 self.currentWindow = nextWindow
 
             else:
-                print("The next window is not properly status")
+                print("The next window is not properly a window")
         else:
             print("One or both windows do not exist")
 
-winManager = windowManager()
+manager = windowManager()

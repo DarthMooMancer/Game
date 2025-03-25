@@ -1,7 +1,7 @@
-from include.system.Settings import *
+from include.System.Settings import *
 from include import childEntities as chEnt
-from include.system import EntityCore as ent
-from include.system import Display as dp
+from include.System import EntityCore as ent
+from include.System import Display as dp
 
 class Map:
     def __init__(self, matrix: list[list[int]], id: int):

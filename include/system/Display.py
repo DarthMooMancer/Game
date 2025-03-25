@@ -1,6 +1,9 @@
-import pygame
-from include.system.Settings import WIDTH, HEIGHT
 import sys
+
+import pygame
+
+from include.System.Settings import HEIGHT, WIDTH, FPS
+
 
 def init():
     pygame.init()
@@ -16,10 +19,9 @@ def init():
 win, clock = init()
 
 class newGraphicRender:
-    def __init__(self, window, fps, updateCallback, initCallback=None, eventHandler=None):
-        self.fps = fps
+    def __init__(self, window, updateCallback, initCallback=None, eventHandler=None):
         self.updateCallback = updateCallback
-        self.initCallback= initCallback 
+        self.initCallback = initCallback 
         self.eventHandler = eventHandler
         self.window = window
 
@@ -28,7 +30,7 @@ class newGraphicRender:
             self.initCallback()
 
         while self.window.status:
-            clock.tick(self.fps)
+            clock.tick(FPS)
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
                     sys.exit()

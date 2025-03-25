@@ -1,9 +1,9 @@
-from include.system import WindowCore as win
 from include import childWindows as cw
+from include.System import WindowCore as win
 
-main = cw.Main(0, win.winManager)
-settings = cw.Settings(1, win.winManager)
+main = cw.Main(0, win.manager)
+settings = cw.Settings(1, win.manager)
 
-win.winManager.addWindow(0, main)
-win.winManager.addWindow(1, settings)
-win.winManager.baseUpdate()
+win.manager.addWindow(0, main)
+win.manager.addWindow(1, settings)
+win.manager.baseUpdate()

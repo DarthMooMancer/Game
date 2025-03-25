@@ -1,7 +1,5 @@
-from include.System.Settings import *
-from include import childEntities as chEnt
-from include.System import EntityCore as ent
-from include.System import Display as dp
+from include.System.Settings import BLUE
+from include.System.EntityCore import entityManager, Obstacle
 
 class Map:
     def __init__(self, matrix: list[list[int]], id: int):
@@ -19,7 +17,6 @@ class Map:
 
 class MapManager:
     def __init__(self):
-        # Map.__init__(self, matrix=None, id=None)
         self.maps = []
         self.activeMap = []
 
@@ -29,14 +26,11 @@ class MapManager:
         else:
             print("Map with that id already exists")
 
-    def removeMap(self, map: Map):
-        self.maps.remove(map)
-
     def tileRenderer(self):
         for row_index, row in enumerate(self.activeMap):
             for col_index, cell in enumerate(row):
                 if cell == 1:
-                    ent.entityManager.addToGroup(chEnt.Wall(row_index, col_index, BLUE), "Obstacles")
+                    entityManager.addToGroup(Obstacle(row_index, col_index, BLUE), "Obstacles") # Creates a new Wall
 
     def setMap(self, map: Map):
         for i in self.maps:

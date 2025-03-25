@@ -1,18 +1,14 @@
 import sys
-
 import pygame
-
 from include.System.Settings import HEIGHT, WIDTH, FPS
-
 
 def init():
     pygame.init()
-    pygame.mixer.pre_init(44100, -16, 2, 512)
     pygame.mixer.init()
     pygame.font.init()
 
     win = pygame.display.set_mode((WIDTH, HEIGHT), vsync=1)
-    pygame.display.set_caption("Gloombound")
+    pygame.display.set_caption("Game")
     clock = pygame.time.Clock()
     return win, clock
 

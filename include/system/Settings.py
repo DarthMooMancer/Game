@@ -1,21 +1,15 @@
 from os import path
 
 TILESIZE = 32
-COLS = 30
-ROWS = 21
-WIDTH, HEIGHT = COLS * TILESIZE, ROWS * TILESIZE
+WIDTH, HEIGHT = 30 * TILESIZE, 21 * TILESIZE # Cols and Rows
 FPS = 45
 
 WHITE = (255, 255, 255)
 BLACK = (0, 0, 0)
-GREY = (105, 105, 105)
-LIGHTGREY = (100, 100, 100)
 GREEN = (0, 255, 0)
 RED = (255, 0, 0)
 YELLOW = (255, 255, 0)
 BLUE = (0, 0, 255)
-BGCOLOR = (40, 40, 40)
-LIGHTBGCOLOR = (60, 60, 60)
 
 gameDir = path.dirname(__file__)
 

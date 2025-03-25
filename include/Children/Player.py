@@ -1,12 +1,12 @@
 import pygame
-from include.System import EntityCore as ent
-from include.System.Settings import *
+from include.System.EntityCore import Entity 
+from include.System.Settings import TILESIZE, WHITE
 
-class Player(ent.Entity):
+class Player(Entity):
     def __init__(self):
-        ent.Entity.__init__(self, TILESIZE, WHITE, (100, 100))
+        Entity.__init__(self, TILESIZE, WHITE, (100, 100))
 
-    def movement(self):
+    def movementity(self):
         keys = pygame.key.get_pressed()
         self.attributes["dx"] = (keys[pygame.K_d] - keys[pygame.K_a]) * self.attributes["speed"]
         self.attributes["dy"] = (keys[pygame.K_s] - keys[pygame.K_w]) * self.attributes["speed"]
@@ -17,9 +17,5 @@ class Player(ent.Entity):
             self.rect.move_ip(-self.attributes["dx"], -self.attributes["dy"])
 
     def update(self):
-        self.movement()
+        self.movementity()
         self.collision()
-
-class Wall(ent.Obstacle):
-    def __init__(self, x, y, color):
-        ent.Obstacle.__init__(self, x, y, color)

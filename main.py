@@ -1,4 +1,4 @@
-from include import childWindows as cw
+from include.Children import Windows as cw
 from include.System import WindowCore as win
 
 main = cw.Main(0, win.manager)

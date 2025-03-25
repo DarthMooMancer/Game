@@ -1,7 +1,6 @@
 import pygame
-from include.System import CameraCore as cam
-from include.System import Display as dp
-from include.System.Settings import *
+from include.System.Display import win
+from include.System.Settings import TILESIZE
 
 class EntityManager:
     def __init__(self):
@@ -10,12 +9,6 @@ class EntityManager:
     def addGroup(self, name: str) -> None:
         self.groups[name] = pygame.sprite.Group()
 
-    def addCustomGroup(self, name: str, group: pygame.sprite.Group) -> None:
-        self.groups[name] = group
-
-    def removeGroup(self, name: str) -> None:
-        self.groups.pop(name)
-
     def addToGroup(self, nameOfObject, nameOfGroup) -> None:
         if nameOfGroup in self.groups:
             self.groups[nameOfGroup].add(nameOfObject)
@@ -23,19 +16,16 @@ class EntityManager:
     def update(self, name: str | None = None) -> None:
         if name is not None:
             if name in self.groups:
-                self.groups[name].draw(dp.win)
+                self.groups[name].draw(win)
                 self.groups[name].update()
         else:
             for group in self.groups.values():
-                group.draw(dp.win)
+                group.draw(win)
                 group.update()
-
 
 entityManager = EntityManager()
 entityManager.addGroup("Entity")
 entityManager.addGroup("Obstacles")
-cameraGroup = cam.CameraGroup()
-entityManager.addCustomGroup("Camera", cameraGroup)
 
 class Entity(pygame.sprite.Sprite):
     attributes: dict[str, int]

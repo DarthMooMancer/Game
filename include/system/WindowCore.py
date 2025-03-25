@@ -1,4 +1,5 @@
 from include.System.Display import newGraphicRender
+
 class Window:
     def __init__(self, id: int, manager):
         self.status: bool = False 
